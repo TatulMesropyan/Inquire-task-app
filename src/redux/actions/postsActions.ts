@@ -13,3 +13,4 @@ export const getPostsSuccess = (posts: Array<postsTypes>) => ({
     type: GET_POSTS_SUCCESS,
     payload: posts,
 });
+
