@@ -18,16 +18,17 @@ function App() {
         getData();
     },[])
 
+
   return (
     <div className="App">
-        {posts?.map(({title,body,id}) => (
+    {posts?.map(({title,body,id}) => (
       <SinglePost
           key={id}
           title={title}
           description={body}
           postID={id}
       />
-            ))}
+      ))}
     </div>
   );
 }

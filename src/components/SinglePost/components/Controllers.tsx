@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const Controllers = ({postID}: IProps): JSX.Element => {
-    console.log(postID)
     return (
     <Grid container>
         <Grid item xs={4}>
