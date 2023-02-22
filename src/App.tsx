@@ -1,17 +1,17 @@
+import type {stateTypes} from "./redux/models";
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import axios from 'axios';
+import {getPostsSuccess, getPostsPending, getPostsError} from "./redux/actions/postsActions";
 import SinglePost from "./components/SinglePost/SinglePost";
 import './App.css';
-import {getPostsSuccess, getPostsPending, getPostsError} from "./redux/actions/postsActions";
-import {stateTypes} from "./redux/models";
 
 function App() {
     const dispatch = useDispatch()
     // @ts-ignore
+    //TODO Fix state type issue
     const data:stateTypes = useSelector(state => state.postsState)
     const {loader, posts, errorMessage} = data || {};
-    console.log(data)
     useEffect(() => {
         const getPosts = () => {
             dispatch(getPostsPending());
@@ -25,7 +25,6 @@ function App() {
         }
     ,[dispatch])
 
-    console.log(process.env.BACKEND_URL)
 
   return (
     <div className="App">

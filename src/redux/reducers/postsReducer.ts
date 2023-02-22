@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit'
 import {GET_POSTS_ERROR, GET_POSTS_PENDING, GET_POSTS_SUCCESS, stateTypes} from "../models";
 
 export const initialState : stateTypes = {
@@ -14,7 +15,7 @@ export const initialState : stateTypes = {
     },
 };
 
-export const postsReducer = (state = initialState, action: any) => {
+export const postsReducer = (state = initialState, action: PayloadAction) => {
     switch (action.type) {
         case  GET_POSTS_SUCCESS :
             return{
