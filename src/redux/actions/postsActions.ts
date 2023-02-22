@@ -7,10 +7,9 @@ export const getPostsError = (errorMessage: string) => ({
 
 export const getPostsPending = () => ({
     type: GET_POSTS_PENDING,
-    payload: true,
 });
 
-export const getPostingsSuccess = (posts: Array<postsTypes>) => ({
+export const getPostsSuccess = (posts: Array<postsTypes>) => ({
     type: GET_POSTS_SUCCESS,
     payload: posts,
 });

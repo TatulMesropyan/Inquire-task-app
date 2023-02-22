@@ -20,16 +20,19 @@ export const postsReducer = (state = initialState, action: any) => {
             return{
                 ...state,
                 posts: action.payload,
+                loader: false,
             }
         case  GET_POSTS_PENDING :
             return{
                 ...state,
-                loader: action.payload,
+                loader: true,
             }
         case  GET_POSTS_ERROR :
             return{
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: false,
             }
+        default:
+            return state
     }
 };

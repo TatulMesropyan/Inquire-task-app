@@ -1,8 +1,9 @@
-import {ActionMatchingAnyOf, configureStore} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
-import {ToolkitStore} from "@reduxjs/toolkit/dist/configureStore";
 
-const store : ToolkitStore<ActionMatchingAnyOf<any>> = configureStore({
+//TODO fix store types
+
+const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware:any) =>
         getDefaultMiddleware({

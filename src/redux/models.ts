@@ -2,7 +2,7 @@
 export interface  postsTypes {
     id: number,
     title: string,
-    description: string,
+    body: string,
 }
 
 export interface singlePostTypes{
