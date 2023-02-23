@@ -1,34 +1,33 @@
 import type {stateTypes} from "./redux/models";
-import type {ChangeEvent} from 'react'
 
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {LoadingButton} from '@mui/lab';
 import axios from 'axios';
-import {getPostsSuccess, getPostsPending, getPostsError} from "./redux/actions/postsActions";
-import SinglePost from "./components/SinglePost/SinglePost";
-import './App.css';
-import {Button, Dialog} from "@mui/material";
+import {Button} from "@mui/material";
 import {Add} from "@mui/icons-material";
+
+import SinglePost from "./components/SinglePost/SinglePost";
 import NewPostDialog from "./components/NewPostDialog/NewPostDialog";
-import newPostDialog from "./components/NewPostDialog/NewPostDialog";
+import {getPostsError, getPostsPending, getPostsSuccess } from "./redux/actions/postsActions";
+import './App.css';
 
 function App() {
     const dispatch = useDispatch()
     // @ts-ignore
     //TODO Fix state type issue
-    const data:stateTypes = useSelector(state => state.postsState)
+    const data: stateTypes = useSelector(state => state.postsState)
     const {loader, posts, errorMessage} = data || {};
-    const [newPostLoading,setNewPostLoading] = useState(false);
+    const [newPostLoading,setNewPostLoading] = useState<boolean>(false);
+    const [newPostDialog,setNewPostDialog] = useState<boolean>(false);
     const [newPost,setNewPost] = useState<{title: string; body: string}>({
         title: "",
         body: "",
     })
 
     useEffect(() => {
-        const getPosts = () => {
+        const getPosts = async () => {
             dispatch(getPostsPending());
-            axios.get(`https://blog-api-t6u0.onrender.com/posts`).then((res) =>{
+            await axios.get(`https://blog-api-t6u0.onrender.com/posts`).then((res) =>{
                 let posts = res.data;
                 dispatch(getPostsSuccess(posts))
                 }
@@ -40,23 +39,32 @@ function App() {
 
     const addPost = () => {
         setNewPostLoading(true);
-        axios.post(`https://blog-api-t6u0.onrender.com/posts`).then((res) =>{
-                let posts = res.data;
-                dispatch(getPostsSuccess(posts))
+        axios.post(`https://blog-api-t6u0.onrender.com/posts`,newPost).then((res) =>{
+                setNewPostLoading(false)
+                 setNewPostDialog(false)
             }
-        ).catch(err => dispatch(getPostsError(err.message)))
+        ).catch(err =>{
+            setNewPostLoading(false)
+            setNewPostDialog(false)
+        })
     }
 
     const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, field: string) => {
-        setNewPost({...newPost, [field]: e.target.value})
+        return setNewPost({...newPost, [field]: e.target.value})
     }
+
   return (
     <div className="App">
-        <Button variant="contained"  sx={{zIndex:'2',position:'sticky',top:'50vh'}} onClick={() => setNewPostLoading(prevState => !prevState)}>
+        <Button variant="contained" color='inherit' sx={{zIndex:'2',position:'sticky',top:'50vh',left:'13vh'}} onClick={() => setNewPostDialog(true)}>
             <Add/>
         </Button>
-        {newPostLoading &&
-			<NewPostDialog onTitleChange={(e) => handleFieldChange(e,'title')} onDescriptionChange={e => handleFieldChange(e, 'body')}/>
+        {newPostDialog &&
+			<NewPostDialog
+                isLoading={newPostLoading}
+                onTitleChange={(e) => handleFieldChange(e,'title')}
+                onDescriptionChange={e => handleFieldChange(e, 'body')}
+                onClose={() => setNewPostDialog(false)}
+                onSubmit={addPost}/>
         }
     {posts?.map(({title,body,id}) => (
       <SinglePost
