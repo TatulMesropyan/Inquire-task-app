@@ -8,12 +8,11 @@ import {useSelector} from "react-redux";
 //TODO Fix Types
 
 interface IProps {
-    onEdit: () => any,
-    onDelete: () => any,
-    onComment: () => any,
+    onChoose:any,
+    postID: number
 }
 
-const Controllers = ({onEdit,onDelete,onComment}: IProps): JSX.Element => {
+const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
     //@ts-ignore
     const editData: editPostTypes = useSelector(state => state.editPostState)
     const {editLoader} = editData || {};
@@ -26,7 +25,7 @@ const Controllers = ({onEdit,onDelete,onComment}: IProps): JSX.Element => {
     return (
     <Grid container sx={{textAlign:'right'}}>
         <Grid item xs={3}>
-            <Button onClick={onComment} disabled={commentLoader}>
+            <Button onClick={() => onChoose({action:'addComment',postID:postID})} disabled={commentLoader}>
                 {commentLoader ?
                     <CircularProgress color='inherit'/>
                     :
@@ -36,7 +35,7 @@ const Controllers = ({onEdit,onDelete,onComment}: IProps): JSX.Element => {
 
         </Grid>
         <Grid item xs={3}>
-            <Button onClick={onEdit} disabled={editLoader}>
+            <Button onClick={() => onChoose({action:'edit',postID:postID})} disabled={editLoader}>
                 {editLoader ?
                 <CircularProgress color='inherit'/>
                     :
@@ -45,7 +44,7 @@ const Controllers = ({onEdit,onDelete,onComment}: IProps): JSX.Element => {
             </Button>
         </Grid>
         <Grid item xs={3}>
-            <Button onClick={onDelete} disabled={deleteLoader}>
+            <Button onClick={() => onChoose({action:'delete',postID:postID})} disabled={deleteLoader}>
             {deleteLoader ?
                 <CircularProgress color='inherit' size={24}/>
                 :

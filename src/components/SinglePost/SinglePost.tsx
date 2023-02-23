@@ -8,13 +8,15 @@ import { Content } from './components/Content';
 import Controllers from './components/Controllers';
 
 interface  IProps {
-    onEdit: () => Promise<void>,
-    onComment: () => Promise<void>,
-    onDelete: () => Promise<void>,
+    // onEdit: () => Promise<void>,
+    // onComment: () => Promise<void>,
+    // onDelete: () => Promise<void>,
+    onChoose: any,
+    postID:number,
     title: string,
     description: string
 }
-const SinglePost = ({onEdit,onComment,onDelete,title,description}:IProps): JSX.Element => {
+const SinglePost = ({onChoose,postID,title,description}:IProps): JSX.Element => {
     return (
         <PostContainer>
             <Content>
@@ -26,7 +28,7 @@ const SinglePost = ({onEdit,onComment,onDelete,title,description}:IProps): JSX.E
                     {description}
                 </Description>
             </Content>
-            <Controllers onComment={onComment} onDelete={onDelete} onEdit={onEdit}/>
+            <Controllers postID={postID} onChoose={onChoose}/>
         </PostContainer>
     )
 }

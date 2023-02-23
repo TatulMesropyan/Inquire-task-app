@@ -14,8 +14,3 @@ export const editPostPending = () => ({
 export const editPostSuccess = () => ({
     type: EDIT_POST_SUCCESS,
 });
-
-
-export const handleFieldsChange = () => ({
-    type: EDIT_POST_ERROR,
-});

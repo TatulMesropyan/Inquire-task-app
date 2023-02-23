@@ -1,4 +1,6 @@
-import {GET_POSTS_ERROR, GET_POSTS_PENDING, GET_POSTS_SUCCESS,HANDLE_FIELD_CHANGE, postsTypes} from "../models";
+import type {postsTypes} from '../models';
+
+import {GET_POSTS_ERROR, GET_POSTS_PENDING, GET_POSTS_SUCCESS} from "../models";
 
 export const getPostsError = (errorMessage: string) => ({
     type: GET_POSTS_ERROR,
@@ -14,9 +16,8 @@ export const getPostsSuccess = (posts: Array<postsTypes>) => ({
     payload: posts,
 });
 
-
-export const handleFieldsChange = (field:string,value:string) => ({
-    type: HANDLE_FIELD_CHANGE,
+export const handleFieldChange = (field:string, value: string) => ({
+    type:"HANDLE_FIELD_CHANGE",
     payload:value,
-    field:field,
-});
+    field: field,
+})

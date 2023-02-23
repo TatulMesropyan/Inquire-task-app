@@ -19,9 +19,17 @@ export interface postTypes{
     body: string,
 }
 
+export interface newCommentTypes{
+    id: number|any,
+    name: string,
+    email:string,
+    body:string,
+}
+
 export interface commentPostTypes{
     commentLoader: boolean,
     addCommentStatus: string,
+    newComment:newCommentTypes
 }
 export interface stateTypes {
     posts: Array<postsTypes>

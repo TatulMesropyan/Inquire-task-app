@@ -1,9 +1,10 @@
-import { PayloadAction } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import type {stateTypes} from '../models'
+
 import {
     GET_POSTS_ERROR,
     GET_POSTS_PENDING,
-    GET_POSTS_SUCCESS,
-    stateTypes,
+    GET_POSTS_SUCCESS, HANDLE_FIELD_CHANGE,
 } from "../models";
 
 export const initialState : stateTypes = {
