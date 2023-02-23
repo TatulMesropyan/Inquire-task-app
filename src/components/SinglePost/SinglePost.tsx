@@ -1,4 +1,6 @@
 import {PriorityHigh} from '@mui/icons-material';
+import React from "react";
+
 import {Description} from "./components/Description";
 import {PostContainer} from "./components/PostContainer";
 import {Title} from "./components/Title";
@@ -6,11 +8,13 @@ import { Content } from './components/Content';
 import Controllers from './components/Controllers';
 
 interface  IProps {
+    onEdit: () => Promise<void>,
+    onComment: () => Promise<void>,
+    onDelete: () => Promise<void>,
     title: string,
     description: string
-    postID: number,
 }
-const SinglePost = ({title,description,postID}:IProps): JSX.Element => {
+const SinglePost = ({onEdit,onComment,onDelete,title,description}:IProps): JSX.Element => {
     return (
         <PostContainer>
             <Content>
@@ -22,7 +26,7 @@ const SinglePost = ({title,description,postID}:IProps): JSX.Element => {
                     {description}
                 </Description>
             </Content>
-            <Controllers postID={postID} />
+            <Controllers onComment={onComment} onDelete={onDelete} onEdit={onEdit}/>
         </PostContainer>
     )
 }

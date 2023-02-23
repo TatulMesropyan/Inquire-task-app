@@ -14,7 +14,6 @@ interface  IProps {
     onSubmit:() => any,
 }
 const NewPostDialog = ({isLoading, onTitleChange, onDescriptionChange, onClose, onSubmit}:IProps): JSX.Element => {
-
     return (
         <Dialog
             open={true}
