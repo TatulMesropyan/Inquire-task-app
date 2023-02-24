@@ -2,7 +2,7 @@ import type { editPostTypes, commentPostTypes, deletePostTypes } from '../../../
 import type { RootState } from '../../../redux/store'
 
 import { Box, Button, CircularProgress, Grid } from '@mui/material'
-import { AddComment, Edit, Delete, ForumOutlined } from '@mui/icons-material'
+import { Edit, Delete, ForumOutlined } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -22,10 +22,6 @@ export const Controllers = ({ onChoose, postID }: IProps): JSX.Element => {
     (state) => state.deletePostState,
   )
   const { deleteLoader } = deleteData || {}
-  const commentData: commentPostTypes = useSelector<RootState, commentPostTypes>(
-    (state) => state.deletePostState,
-  )
-  const { commentLoader } = commentData || {}
 
   const openCommentsChoose = useCallback(() => {
     onChoose({ action: 'openComments', postID: postID })
@@ -35,14 +31,6 @@ export const Controllers = ({ onChoose, postID }: IProps): JSX.Element => {
   return (
     <Box sx={{ display: 'flex', alignSelf: 'center', marginTop: '1rem' }}>
       <Grid container>
-        <Grid item xs={3}>
-          <Button
-            onClick={() => onChoose({ action: 'addComment', postID: postID })}
-            disabled={commentLoader}
-          >
-            {commentLoader ? <CircularProgress color='inherit' /> : <AddComment color='action' />}
-          </Button>
-        </Grid>
         <Grid item xs={3}>
           <Button
             onClick={() => onChoose({ action: 'edit', postID: postID })}

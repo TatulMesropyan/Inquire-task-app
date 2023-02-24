@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box, Button, TextField } from '@mui/material'
 import { AddComment } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 import {
   addCommentError,
@@ -22,7 +23,6 @@ import SinglePost from './SinglePost/SinglePost'
 import SingleComment from './SingleComment/SingleComment'
 import PostActionDialog from './PostActionDialog/PostActionDialog'
 import { TextArea as TextAreaAutoSize } from './PostActionDialog/components/TextArea'
-import { useNavigate } from 'react-router-dom'
 
 interface IProps {
   postID: number

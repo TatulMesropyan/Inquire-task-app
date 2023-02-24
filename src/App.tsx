@@ -36,7 +36,7 @@ function App() {
     axios
       .get(`https://blog-api-t6u0.onrender.com/posts`)
       .then((res) => {
-        dispatch(getPostsSuccess((res.data = [])))
+        dispatch(getPostsSuccess(res.data))
       })
       .catch(() => dispatch(getPostsError()))
   }, [dispatch, deleteLoader, editLoader, addLoader])
@@ -50,7 +50,7 @@ function App() {
               <PostsDialogs setOption={setOption} option={option} />
               {posts?.map(
                 (post) =>
-                  !!post && (
+                  post && (
                     <SinglePost
                       onChoose={setOption}
                       postID={post.id}
