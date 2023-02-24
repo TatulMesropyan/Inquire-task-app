@@ -41,6 +41,7 @@ export const commentPostReducer = (state = initialState, action: PayloadAction) 
       }
     case OPEN_COMMENTS_SUCCESS:
       // @ts-ignore
+      // eslint-disable-next-line no-case-declarations
       const { body, comments, title, id }: commentResponseTypes = action.payload
       return {
         ...state,
