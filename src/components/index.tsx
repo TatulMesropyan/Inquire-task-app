@@ -7,9 +7,8 @@ import {useDispatch} from "react-redux";
 import {useState} from "react";
 
 import {TextArea as TextAreaAutoSize} from "./NewPostDialog/components/TextArea";
-import {deletePostError, deletePostPending, deletePostSuccess} from "../redux/actions/deletePostActions";
+import {deletePostError, deletePostPending, deletePostSuccess,editPostError, editPostPending, editPostSuccess,addCommentError, addCommentPending, addCommentSuccess,addPostError, addPostPending, addPostSuccess} from "../redux/actions";
 import PostActionDialog from "./NewPostDialog";
-
 
 interface  IOption {
     action:string,
@@ -20,24 +19,23 @@ interface IProps {
     setOption: Dispatch<SetStateAction<{ action: string; postID: any; }>>,
     option:IOption
 }
-
 // @ts-ignore
 const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
     const {action,postID} = option || {};
+    const dispatch:Dispatch<AnyAction> = useDispatch();
     const [post,setPost] = useState<{title: string; body: string}>({
         title: "",
         body: "",
     })
-
     const [comment, setComment] = useState<{ name: string, email: string, body:string}>({
         name:'',
         email:'',
         body:'',
     })
-    const dispatch:Dispatch<AnyAction> = useDispatch();
-    const deletePost = async () => {
+
+    const deletePost = async ():Promise<void> => {
         dispatch(deletePostPending());
-        await axios.delete(`https://blog-api-t6u0.onrender.com/posts/${postID}`).then(() =>{
+        await axios.delete(`https://blog-api-t6u0.onrender.com/posts/${postID}`).then((res) =>{
                 dispatch(deletePostSuccess())
             }
         ).catch(err => dispatch(deletePostError()))
@@ -45,29 +43,35 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
     }
 
     const editPost = async ()=> {
-        dispatch(deletePostPending());
-        await axios.put(`https://blog-api-t6u0.onrender.com/posts/${postID}`,post).then(() =>{
-                dispatch(deletePostSuccess())
+        dispatch(editPostPending());
+        await axios.put(`https://blog-api-t6u0.onrender.com/posts/${postID}`,post).then((res) =>{
+                dispatch(editPostSuccess())
             }
-        ).catch(err => dispatch(deletePostError()))
+        ).catch(err => dispatch(editPostError()))
         setPost({title:'',body:''})
         setOption({action: "", postID: null});
     }
 
     const commentPost = async ():Promise<void> => {
-        dispatch(deletePostPending());
-        await axios.post(`https://blog-api-t6u0.onrender.com/posts/${postID}`, {...comment,postID}).then(() =>{
-
+        dispatch(addCommentPending());
+        await axios.post(`https://blog-api-t6u0.onrender.com/comments`, {...comment,postID}).then((res) =>{
+                dispatch(addCommentSuccess());
             }
-        ).catch(err => dispatch(deletePostError()))
+        ).catch(err => dispatch(addCommentError()))
+        setComment({
+            name:'',
+            email:'',
+            body:'',
+        })
         setOption({action: "", postID: null});
     }
-    const addPost = async () => {
+    const addPost = async ():Promise<void> => {
+        dispatch(addPostPending());
         await axios.post(`https://blog-api-t6u0.onrender.com/posts`,post).then((res) =>{
-                // setNewPostDialog(false)
+                dispatch(addPostSuccess())
             }
         ).catch(err =>{
-            // setNewPostDialog(false)
+            dispatch(addPostError())
         })
         setPost({title:'',body:''})
         setOption({action: "", postID: null});

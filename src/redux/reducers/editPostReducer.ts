@@ -5,17 +5,11 @@ import {
     EDIT_POST_ERROR,
     EDIT_POST_PENDING,
     EDIT_POST_SUCCESS,
-    HANDLE_FIELD_CHANGE,
 } from "../models";
 
 export const initialState : editPostTypes = {
     editStatus: '',
     editLoader: false,
-    updatedPost: {
-        id :null,
-        title: '',
-        body: ''
-    },
 };
 
 export const editPostsReducer = (state = initialState, action: PayloadAction) => {
@@ -23,7 +17,7 @@ export const editPostsReducer = (state = initialState, action: PayloadAction) =>
         case EDIT_POST_SUCCESS :
             return {
                 ...state,
-                status: 'Successfully Edited',
+                editStatus: 'Successfully Edited',
                 editLoader: false,
             }
         case  EDIT_POST_PENDING :
@@ -34,16 +28,8 @@ export const editPostsReducer = (state = initialState, action: PayloadAction) =>
         case  EDIT_POST_ERROR :
             return {
                 ...state,
-                status: 'Failed to edit',
+                editStatus: 'Failed to edit',
                 editLoader: false
-            }
-        case HANDLE_FIELD_CHANGE :
-            //@ts-ignore
-            let field = action.field;
-            let value = action.payload;
-            return {
-                ...state,
-                updatedPost: {...state.updatedPost, [field]: value}
             }
         default:
             return state

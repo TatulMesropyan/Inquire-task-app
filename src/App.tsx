@@ -22,7 +22,7 @@ function App() {
     const {deleteStatus,deleteLoader} = deleteData || {};
     // @ts-ignore
     const postsData : stateTypes = useSelector(state => state.postsState)
-    const {posts,status} = postsData || {}
+    const {posts,addLoader} = postsData || {}
     const [option,setOption] = useState<{action:string,postID:any}>({
         action: '',
         postID: null
@@ -35,9 +35,9 @@ function App() {
                 let posts = res.data;
                 dispatch(getPostsSuccess(posts))
                 }
-            ).catch(err => dispatch(getPostsError(err.message)))
+            ).catch(err => dispatch(getPostsError()))
         }
-    ,[dispatch, deleteLoader, editLoader])
+    ,[dispatch, deleteLoader, editLoader, addLoader])
 
 
     return (

@@ -12,11 +12,9 @@ export interface deletePostTypes {
 export interface  editPostTypes {
     editStatus: string,
     editLoader: boolean,
-    updatedPost: postsTypes
 }
 
 export interface newCommentTypes{
-    id: number|any,
     name: string,
     email:string,
     body:string,
@@ -25,16 +23,20 @@ export interface newCommentTypes{
 export interface commentPostTypes{
     commentLoader: boolean,
     addCommentStatus: string,
-    newComment:newCommentTypes
 }
 export interface stateTypes {
     posts: Array<postsTypes>
     status: string,
+    addLoader: boolean,
 }
 
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_PENDING = 'GET_POSTS_PENDING';
 export const GET_POSTS_ERROR = 'GET_POSTS_ERROR';
+
+export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
+export const ADD_POST_PENDING = 'ADD_POST_PENDING';
+export const ADD_POST_ERROR = 'ADD_POST_ERROR';
 
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
 export const DELETE_POST_PENDING = 'DELETE_POST_PENDING';
@@ -48,5 +50,3 @@ export const EDIT_POST_ERROR = 'EDIT_POST_ERROR';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_PENDING = 'ADD_COMMENT_PENDING';
 export const ADD_COMMENT_ERROR = 'ADD_COMMENT_ERROR';
-
-export const HANDLE_FIELD_CHANGE = 'HANDLE_FIELD_CHANGE';
