@@ -1,7 +1,6 @@
 import type { AnyAction } from 'redux'
 import type { Dispatch, Key } from 'react'
 import type { commentedData } from '../redux/models'
-
 import type { ChangeEvent } from 'react'
 
 import { useEffect, useState } from 'react'
@@ -53,7 +52,7 @@ const Comments = ({ postID }: any): JSX.Element => {
                 })
                 .catch((err) => dispatch(openCommentsError()))
         } else navigate('/')
-    }, [dispatch, dialog])
+    }, [dispatch, dialog, postID, navigate])
 
     const commentPost = async (): Promise<void> => {
         dispatch(addCommentPending())
