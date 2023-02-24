@@ -49,9 +49,6 @@ function App() {
             path={'/'}
             element={
                 <>
-                    <Button variant="contained" color='inherit' sx={{zIndex:'2',position:'sticky',top:'50vh',left:'13vh'}} onClick={() => setOption({action:'add', postID:null})}>
-                        <Add/>
-                    </Button>
                     <PostsDialogs setOption={setOption} option={option}/>
                     {posts?.map((post) => (
                         !!post &&

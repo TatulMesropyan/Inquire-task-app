@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {useState} from "react";
 
 import {TextArea as TextAreaAutoSize} from "./PostActionDialog/components/TextArea";
-import {deletePostError, deletePostPending, deletePostSuccess,editPostError, editPostPending, editPostSuccess,addCommentError, addCommentPending, addCommentSuccess,addPostError, addPostPending, addPostSuccess} from "../redux/actions";
+import {deletePostError, deletePostPending, deletePostSuccess,editPostError, editPostPending, editPostSuccess,addPostError, addPostPending, addPostSuccess} from "../redux/actions";
 import PostActionDialog from "./PostActionDialog";
 
 interface  IOption {
@@ -26,11 +26,6 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
     const [post,setPost] = useState<{title: string; body: string}>({
         title: "",
         body: "",
-    })
-    const [comment, setComment] = useState<{ name: string, email: string, body:string}>({
-        name:'',
-        email:'',
-        body:'',
     })
 
     const deletePost = async ():Promise<void> => {
@@ -52,19 +47,6 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
         setOption({action: "", postID: null});
     }
 
-    const commentPost = async ():Promise<void> => {
-        dispatch(addCommentPending());
-        await axios.post(`https://blog-api-t6u0.onrender.com/comments`, {...comment,postID}).then((res) =>{
-                dispatch(addCommentSuccess());
-            }
-        ).catch(err => dispatch(addCommentError()))
-        setComment({
-            name:'',
-            email:'',
-            body:'',
-        })
-        setOption({action: "", postID: null});
-    }
     const addPost = async ():Promise<void> => {
         dispatch(addPostPending());
         await axios.post(`https://blog-api-t6u0.onrender.com/posts`,post).then((res) =>{
@@ -80,9 +62,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
     const handleFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, field: string) => (
         setPost({...post,[field]:e.target.value})
     )
-    const handleCommentFieldsChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, field: string) => (
-        setComment({...comment,[field]:e.target.value})
-    )
+
         switch(action) {
             case('edit'): {
                 return (
@@ -134,27 +114,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
                     />
                 )
             }
-            case('addComment'): {
-                return (
-                    <PostActionDialog
-                        headerText="Please enter your comments"
-                        controllers={
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: '50px',
-                                justifyContent: 'space-between'
-                            }}>
-                                <TextField label="Name..." onChange={(e) => handleCommentFieldsChange(e, 'name')}/>
-                                <TextField label="Email" onChange={(e) => handleCommentFieldsChange(e, 'email')}/>
-                                <TextAreaAutoSize placeholder="Comment..."
-                                                  onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => handleCommentFieldsChange(e, 'body')}/>
-                            </Box>}
-                        onClose={() => setOption({action: '', postID: null})}
-                        onSubmit={commentPost}
-                    />
-                )
-            }
+
         }
 
 };
