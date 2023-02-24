@@ -1,4 +1,5 @@
 import {PriorityHigh} from '@mui/icons-material';
+import {Paper} from '@mui/material';
 
 import {Description,Title,Content,PostContainer,Controllers} from "./components";
 
@@ -12,6 +13,7 @@ const SinglePost = ({onChoose,postID,title,description}:IProps): JSX.Element => 
     return (
         <PostContainer>
             <Content>
+            <Paper>
                 <Title>
                     <PriorityHigh/>
                     {title}
@@ -19,6 +21,7 @@ const SinglePost = ({onChoose,postID,title,description}:IProps): JSX.Element => 
                 <Description>
                     {description}
                 </Description>
+            </Paper>
             </Content>
             <Controllers postID={postID} onChoose={onChoose}/>
         </PostContainer>

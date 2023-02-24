@@ -1,7 +1,7 @@
 import type {editPostTypes} from "../../../redux/models";
 import type {commentPostTypes, deletePostTypes} from "../../../redux/models";
 
-import {Button, CircularProgress, Grid} from '@mui/material';
+import {Box, Button, CircularProgress, Grid} from '@mui/material';
 import {AddComment, Edit, Delete} from '@mui/icons-material';
 import {useSelector} from "react-redux";
 
@@ -23,13 +23,14 @@ export const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
     const commentData: commentPostTypes = useSelector(state => state.deletePostState)
     const {commentLoader} = commentData || {};
     return (
-    <Grid container sx={{textAlign:'right'}}>
+        <Box sx={{display:'flex',alignSelf:'center',marginTop:'1rem'}}>
+    <Grid container>
         <Grid item xs={3}>
             <Button onClick={() => onChoose({action:'addComment',postID:postID})} disabled={commentLoader}>
                 {commentLoader ?
-                    <CircularProgress color='inherit'/>
+                    <CircularProgress color='inherit' />
                     :
-                    <AddComment/>
+                    <AddComment color='action'/>
                 }
             </Button>
 
@@ -39,7 +40,7 @@ export const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
                 {editLoader ?
                 <CircularProgress color='inherit'/>
                     :
-                <Edit/>
+                <Edit color='action'/>
                 }
             </Button>
         </Grid>
@@ -48,10 +49,11 @@ export const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
             {deleteLoader ?
                 <CircularProgress color='inherit' size={24}/>
                 :
-                <Delete/>
+                <Delete color='action'/>
             }
             </Button>
         </Grid>
     </Grid>
+        </Box>
     )
 };

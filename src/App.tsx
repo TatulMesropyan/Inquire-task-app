@@ -47,6 +47,7 @@ function App() {
         </Button>
         <PostsDialogs setOption={setOption} option={option}/>
     {posts?.map(({title,body,id}) => (
+        title && body && id &&
           <SinglePost
           onChoose={setOption}
           postID={id}
