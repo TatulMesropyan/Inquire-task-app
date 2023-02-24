@@ -9,12 +9,12 @@ interface  IProps {
     onSubmit: any,
     controllers?: JSX.Element,
 }
-const NewPostDialog = ({headerText,onClose,onSubmit,controllers,...restProps}:IProps): JSX.Element => {
+const PostActionDialog = ({headerText,onClose,onSubmit,controllers,...restProps}:IProps): JSX.Element => {
     return (
         <Dialog
             open={true}
             onClose={onClose}
-            onBackdropClick={onClose}
+            {...restProps}
         >
             <DialogTitle>
                 {headerText}
@@ -36,4 +36,4 @@ const NewPostDialog = ({headerText,onClose,onSubmit,controllers,...restProps}:IP
     )
 }
 
-export default NewPostDialog;
+export default PostActionDialog;

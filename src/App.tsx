@@ -6,10 +6,10 @@ import axios from 'axios';
 import {Button} from "@mui/material";
 import {Add} from "@mui/icons-material";
 
-import SinglePost from "./components/SinglePost/SinglePost";
+import SinglePost from "./components/SinglePost";
+import PostsDialogs from "./components";
 import {getPostsError, getPostsPending, getPostsSuccess} from "./redux/actions/postsActions";
 import './App.css';
-import PostsDialogs from "./components";
 
 function App() {
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ function App() {
                 }
             ).catch(err => dispatch(getPostsError(err.message)))
         }
-    ,[dispatch, deleteLoader,editLoader])
+    ,[dispatch, deleteLoader, editLoader])
 
 
     return (

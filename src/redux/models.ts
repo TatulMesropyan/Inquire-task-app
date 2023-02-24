@@ -14,10 +14,6 @@ export interface  editPostTypes {
     editLoader: boolean,
     updatedPost: postsTypes
 }
-export interface postTypes{
-    title: string,
-    body: string,
-}
 
 export interface newCommentTypes{
     id: number|any,

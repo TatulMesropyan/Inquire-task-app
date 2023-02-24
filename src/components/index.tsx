@@ -8,17 +8,19 @@ import {useState} from "react";
 
 import {TextArea as TextAreaAutoSize} from "./NewPostDialog/components/TextArea";
 import {deletePostError, deletePostPending, deletePostSuccess} from "../redux/actions/deletePostActions";
-import NewPostDialog from "./NewPostDialog/NewPostDialog";
+import PostActionDialog from "./NewPostDialog";
 
 
 interface  IOption {
     action:string,
     postID: number|null
 }
+
 interface IProps {
     setOption: Dispatch<SetStateAction<{ action: string; postID: any; }>>,
     option:IOption
 }
+
 // @ts-ignore
 const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
     const {action,postID} = option || {};
@@ -80,7 +82,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
         switch(action) {
             case('edit'): {
                 return (
-                    <NewPostDialog
+                    <PostActionDialog
                         headerText={"Edit post"}
                         controllers={<Box
                             sx={{
@@ -99,7 +101,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
             }
             case('add'): {
                 return (
-                    <NewPostDialog
+                    <PostActionDialog
                         headerText="Create new post"
                         controllers={
                             <Box sx={{
@@ -119,7 +121,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
             }
             case('delete'): {
                 return (
-                    <NewPostDialog
+                    <PostActionDialog
                         headerText="Are you sure you want Delete?"
                         onClose={() => setOption({action: '', postID: null})}
                         onSubmit={deletePost}
@@ -128,8 +130,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
             }
             case('addComment'): {
                 return (
-
-                    <NewPostDialog
+                    <PostActionDialog
                         headerText="Please enter your comments"
                         controllers={
                             <Box sx={{

@@ -12,7 +12,7 @@ interface IProps {
     postID: number
 }
 
-const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
+export const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
     //@ts-ignore
     const editData: editPostTypes = useSelector(state => state.editPostState)
     const {editLoader} = editData || {};
@@ -55,5 +55,3 @@ const Controllers = ({onChoose,postID}: IProps): JSX.Element => {
     </Grid>
     )
 };
-
-export default Controllers;

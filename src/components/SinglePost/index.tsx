@@ -1,16 +1,8 @@
 import {PriorityHigh} from '@mui/icons-material';
-import React from "react";
 
-import {Description} from "./components/Description";
-import {PostContainer} from "./components/PostContainer";
-import {Title} from "./components/Title";
-import { Content } from './components/Content';
-import Controllers from './components/Controllers';
+import {Description,Title,Content,PostContainer,Controllers} from "./components";
 
 interface  IProps {
-    // onEdit: () => Promise<void>,
-    // onComment: () => Promise<void>,
-    // onDelete: () => Promise<void>,
     onChoose: any,
     postID:number,
     title: string,

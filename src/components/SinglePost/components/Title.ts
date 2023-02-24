@@ -10,6 +10,7 @@ export const Title: StyledComponent<any> = styled.h3`
   align-self: center;
   text-align: left;
   position: sticky;
+  position: -webkit-sticky;
   top: 5px;
   z-index: 1;
 `
