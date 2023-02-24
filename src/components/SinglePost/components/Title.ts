@@ -4,6 +4,7 @@ export const Title: StyledComponent<any> = styled.h3`
   display: flex;
   font-weight: 700;
   border: 2px solid inherit;
+  font-family: Consolas, monaco, monospace;
   background-color: #f2f2f2;
   color: darkslategray;
   padding: 2rem;

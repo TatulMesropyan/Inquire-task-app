@@ -20,9 +20,27 @@ export interface newCommentTypes{
     body:string,
 }
 
+export interface  commentedData {
+    body:string,
+    email:string,
+    id: number,
+    postID:number,
+    name:string,
+}
+export interface commentResponseTypes{
+    body:string,
+    title:string,
+    comments:Array<commentedData>,
+    id: null|number
+}
 export interface commentPostTypes{
     commentLoader: boolean,
     addCommentStatus: string,
+    openCommentLoader:boolean,
+    body:string,
+    title:string,
+    comments:Array<commentedData>,
+    id: null|number
 }
 export interface stateTypes {
     posts: Array<postsTypes>
@@ -50,3 +68,7 @@ export const EDIT_POST_ERROR = 'EDIT_POST_ERROR';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_PENDING = 'ADD_COMMENT_PENDING';
 export const ADD_COMMENT_ERROR = 'ADD_COMMENT_ERROR';
+
+export const OPEN_COMMENTS_PENDING = 'OPEN_COMMENTS_PENDING';
+export const OPEN_COMMENTS_SUCCESS ='OPEN_COMMENTS_SUCCESS';
+export const OPEN_COMMENT_ERROR = 'OPEN_COMMENT_ERROR';

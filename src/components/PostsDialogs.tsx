@@ -6,12 +6,12 @@ import axios from "axios";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 
-import {TextArea as TextAreaAutoSize} from "./NewPostDialog/components/TextArea";
+import {TextArea as TextAreaAutoSize} from "./PostActionDialog/components/TextArea";
 import {deletePostError, deletePostPending, deletePostSuccess,editPostError, editPostPending, editPostSuccess,addCommentError, addCommentPending, addCommentSuccess,addPostError, addPostPending, addPostSuccess} from "../redux/actions";
-import PostActionDialog from "./NewPostDialog";
+import PostActionDialog from "./PostActionDialog";
 
 interface  IOption {
-    action:string,
+    action: string,
     postID: number|null
 }
 
@@ -88,7 +88,8 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
                 return (
                     <PostActionDialog
                         headerText={"Edit post"}
-                        controllers={<Box
+                        controllers={
+                        <Box
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -98,7 +99,8 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
                             <TextField label="Title..." onChange={(e) => handleFieldChange(e, 'title')}/>
                             <TextAreaAutoSize placeholder="Description..."
                                               onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => handleFieldChange(e, 'body')}/>
-                        </Box>}
+                        </Box>
+                    }
                         onClose={() => setOption({action: '', postID: null})}
                         onSubmit={editPost}/>
                 )
@@ -154,6 +156,7 @@ const PostsDialogs = ({setOption, option}:IProps) : JSX.Element => {
                 )
             }
         }
+
 };
 
 export default PostsDialogs;

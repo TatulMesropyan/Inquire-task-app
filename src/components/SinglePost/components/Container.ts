@@ -7,5 +7,5 @@ export const Container : StyledComponent<any> = styled.div`
   flex-direction: column;
   text-align: center;
   justify-content: flex-start;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 `;

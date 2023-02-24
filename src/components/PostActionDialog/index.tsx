@@ -4,7 +4,7 @@ import {Telegram} from "@mui/icons-material";
 import React from "react";
 
 interface  IProps {
-    headerText:string,
+    headerText: string,
     onClose: () => void,
     onSubmit: any,
     controllers?: JSX.Element,

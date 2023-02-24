@@ -5,11 +5,13 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from 'axios';
 import {Button} from "@mui/material";
 import {Add} from "@mui/icons-material";
+import { Routes, Route } from "react-router-dom";
 
 import SinglePost from "./components/SinglePost";
-import PostsDialogs from "./components";
+import PostsDialogs from "./components/PostsDialogs";
 import {getPostsError, getPostsPending, getPostsSuccess} from "./redux/actions/postsActions";
 import './App.css';
+import Comments from "./components/Comments";
 
 function App() {
     const dispatch = useDispatch()
@@ -42,20 +44,33 @@ function App() {
 
     return (
     <div className="App">
-        <Button variant="contained" color='inherit' sx={{zIndex:'2',position:'sticky',top:'50vh',left:'13vh'}} onClick={() => setOption({action:'add', postID:null})}>
-            <Add/>
-        </Button>
-        <PostsDialogs setOption={setOption} option={option}/>
-    {posts?.map(({title,body,id}) => (
-        title && body && id &&
-          <SinglePost
-          onChoose={setOption}
-          postID={id}
-          key={id}
-          title={title}
-          description={body}
-      />
-      ))}
+        <Routes>
+            <Route
+            path={'/'}
+            element={
+                <>
+                    <Button variant="contained" color='inherit' sx={{zIndex:'2',position:'sticky',top:'50vh',left:'13vh'}} onClick={() => setOption({action:'add', postID:null})}>
+                        <Add/>
+                    </Button>
+                    <PostsDialogs setOption={setOption} option={option}/>
+                    {posts?.map((post) => (
+                        !!post &&
+						<SinglePost
+							onChoose={setOption}
+							postID={post.id}
+							key={post.id}
+							title={post.title}
+							description={post.body}
+						/>
+                    ))}
+                </>
+            }
+            />
+            <Route
+                path={'/comments'}
+                element={<Comments postID={option.postID}/>}
+                />
+            </Routes>
     </div>
   );
 }
