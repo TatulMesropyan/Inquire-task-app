@@ -13,10 +13,6 @@ interface IProps {
 }
 
 export const Controllers = ({ onChoose, postID }: IProps): JSX.Element => {
-  /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-  /* eslint-disable @typescript-eslint/no-unsafe-return */
-  /* eslint-disable @typescript-eslint/no-unsafe-call */
-
   const navigate = useNavigate()
   const editData: editPostTypes = useSelector<RootState, editPostTypes>(
     (state) => state.editPostState,

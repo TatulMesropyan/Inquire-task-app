@@ -14,9 +14,6 @@ import './App.css'
 import Comments from './components/Comments'
 
 function App() {
-  /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-  /*eslint-disable @typescript-eslint/no-unsafe-return */
-
   const dispatch: Dispatch<AnyAction> = useDispatch()
   const editData: editPostTypes = useSelector<RootState, editPostTypes>(
     (state: RootState) => state.editPostState,

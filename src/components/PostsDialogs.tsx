@@ -31,7 +31,6 @@ interface IProps {
 }
 
 const PostsDialogs = ({ setOption, option }: IProps): JSX.Element => {
-  /* eslint-disable @typescript-eslint/no-misused-promises */
   const { action, postID } = option || {}
   const dispatch: Dispatch<AnyAction> = useDispatch()
   const [post, setPost] = useState<{ title: string; body: string }>({

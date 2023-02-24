@@ -32,9 +32,6 @@ const Comments = ({ postID }: IProps): JSX.Element => {
   const dispatch: Dispatch<AnyAction> = useDispatch()
   const [dialog, setDialog] = useState<boolean>(false)
   const navigate = useNavigate()
-  /* eslint-disable  @typescript-eslint/no-unsafe-member-access */
-  /*eslint-disable @typescript-eslint/no-unsafe-return */
-  /* eslint-disable @typescript-eslint/no-misused-promises */
   const data = useSelector<RootState, commentPostTypes>(
     (state: RootState) => state.commentPostState,
   )

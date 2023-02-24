@@ -28,7 +28,6 @@ export const openCommentsPending = () => ({
   type: OPEN_COMMENTS_PENDING,
 })
 
-//TODO fix prop type
 export const openCommentsSuccess = (data: commentResponseTypes) => {
   const { body, title, comments, id } = data
   return {
