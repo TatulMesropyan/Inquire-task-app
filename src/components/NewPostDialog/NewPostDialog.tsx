@@ -13,7 +13,8 @@ const NewPostDialog = ({headerText,onClose,onSubmit,controllers,...restProps}:IP
     return (
         <Dialog
             open={true}
-            {...restProps}
+            onClose={onClose}
+            onBackdropClick={onClose}
         >
             <DialogTitle>
                 {headerText}
