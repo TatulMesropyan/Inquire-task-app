@@ -1,4 +1,4 @@
-import styled, {StyledComponent} from "@emotion/styled";
+import styled, { StyledComponent } from '@emotion/styled'
 
 export const Title: StyledComponent<any> = styled.h3`
   display: flex;
