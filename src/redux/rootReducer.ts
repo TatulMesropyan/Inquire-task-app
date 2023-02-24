@@ -5,9 +5,9 @@ import { deletePostReducer as deletePostState } from './reducers/deletePostReduc
 import { commentPostReducer as commentPostState } from './reducers/commentPostReducer'
 
 const rootReducer = combineReducers({
-    postsState,
-    editPostState,
-    deletePostState,
-    commentPostState,
+  postsState,
+  editPostState,
+  deletePostState,
+  commentPostState,
 })
 export default rootReducer

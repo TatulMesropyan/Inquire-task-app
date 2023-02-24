@@ -1,50 +1,50 @@
 export interface postsTypes {
-    id: number | any
-    title: string
-    body: string
+  id: number
+  title: string
+  body: string
 }
 
 export interface deletePostTypes {
-    deleteLoader: boolean
-    deleteStatus: string
+  deleteLoader: boolean
+  deleteStatus: string
 }
 export interface editPostTypes {
-    editStatus: string
-    editLoader: boolean
+  editStatus: string
+  editLoader: boolean
 }
 
 export interface newCommentTypes {
-    name: string
-    email: string
-    body: string
+  name: string
+  email: string
+  body: string
 }
 
 export interface commentedData {
-    body: string
-    email: string
-    id: number
-    postID: number
-    name: string
+  body: string
+  email: string
+  id: number
+  postID: number
+  name: string
 }
 export interface commentResponseTypes {
-    body: string
-    title: string
-    comments: Array<commentedData>
-    id: null | number
+  body: string
+  title: string
+  comments: Array<commentedData>
+  id: number
 }
 export interface commentPostTypes {
-    commentLoader: boolean
-    addCommentStatus: string
-    openCommentLoader: boolean
-    body: string
-    title: string
-    comments: Array<commentedData>
-    id: null | number
+  commentLoader: boolean
+  addCommentStatus: string
+  openCommentLoader: boolean
+  body: string
+  title: string
+  comments: Array<commentedData>
+  id: number
 }
 export interface stateTypes {
-    posts: Array<postsTypes>
-    status: string
-    addLoader: boolean
+  posts: Array<postsTypes>
+  status: string
+  addLoader: boolean
 }
 
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS'

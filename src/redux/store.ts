@@ -1,15 +1,16 @@
+import type { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware'
+
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './rootReducer'
 
 const store = configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware: any) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
 
 export default store
